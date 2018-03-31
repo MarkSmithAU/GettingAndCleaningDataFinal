@@ -22,7 +22,8 @@ This was developed on R 3.4.3 on Windows x64.
 * Sufficient permissions to write results.txt to the working directory.
 
 ## How to run
-```{r}source("run_analysis.R")
+```{r}
+source("run_analysis.R")
 run_analysis()
 ```
 
