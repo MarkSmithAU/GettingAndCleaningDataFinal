@@ -30,10 +30,9 @@
 library(dplyr)
 library(data.table)
 
-# run_analysis - main function
-run_analysis <- function() {
-        print("run_analysis() start.")
-        
+# loadData
+# function to import the data into an unfiltered tidy set.  This is a neatly reusable block.
+loadData <- function() {
         # Read in all relevant files: 
         trainSubject <- tbl_df(fread("train/subject_train.txt"))
         trainX <- tbl_df(fread("train/X_train.txt"))
@@ -59,9 +58,16 @@ run_analysis <- function() {
         names(allX) <- as.vector(unlist(features["V2"]))
         # Join it all together
         completeSet <- bind_cols(allSubject, activity["Activity"], allX)
+        # Explicitly return the generated set 
+        return(completeSet)
+}
+
+# run_analysis - main function
+run_analysis <- function() {
+        print("run_analysis() start.")
         
-        # Clean up to free resources and avoid the use of incorrect variables
-        rm(trainSubject, testSubject, trainX, testX, trainY, testY, allX, allY, allSubject, activity, activityLabels, features)
+        # Read in the data
+        completeSet <- loadData()
         
         # Extract only the measurements on the mean and standard deviation for each measurement.
         # where mean() is Mean value and std() is Standard deviation
