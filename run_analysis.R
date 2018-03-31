@@ -66,7 +66,7 @@ loadData <- function() {
 run_analysis <- function() {
         print("run_analysis() start.")
         
-        # Read in the data
+        # read in the data
         completeSet <- loadData()
         
         # Extract only the measurements on the mean and standard deviation for each measurement.
@@ -104,8 +104,9 @@ run_analysis <- function() {
                                 ) 
         
         # Save to file
-        fwrite(summarySet, file = "results.txt", append = FALSE, quote = "auto", 
-               sep = "\t", na = "", dec = ".", row.names = FALSE, col.names = TRUE)
-
+        write.table(summarySet, file = "results.txt", append = FALSE,
+               na = "", dec = ".", row.names = FALSE, col.names = TRUE)
+        
+        
         print("run_analysis() complete.")
 }
